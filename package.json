@@ -1,0 +1,12 @@
+{
+  "name": "texcold-hvac-website",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Texcold staging site with optional server-side AI chat",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
