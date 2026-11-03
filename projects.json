@@ -1,0 +1,683 @@
+[
+  {
+    "id": "project-07",
+    "title": {
+      "en": "Commercial rooftop unit service",
+      "es": "Servicio de equipo rooftop comercial"
+    },
+    "tags": [
+      "commercial",
+      "rooftop",
+      "service",
+      "maintenance"
+    ],
+    "width": 1152,
+    "height": 1536,
+    "src": "/assets/projects/project-07.webp",
+    "thumb": "/assets/projects/project-07-thumb.webp"
+  },
+  {
+    "id": "project-08",
+    "title": {
+      "en": "Rooftop equipment repair",
+      "es": "Reparación de equipo rooftop"
+    },
+    "tags": [
+      "commercial",
+      "rooftop",
+      "repair",
+      "service"
+    ],
+    "width": 1152,
+    "height": 1536,
+    "src": "/assets/projects/project-08.webp",
+    "thumb": "/assets/projects/project-08-thumb.webp"
+  },
+  {
+    "id": "project-09",
+    "title": {
+      "en": "Rooftop system evaluation",
+      "es": "Evaluación de sistema rooftop"
+    },
+    "tags": [
+      "commercial",
+      "rooftop",
+      "service"
+    ],
+    "width": 900,
+    "height": 675,
+    "src": "/assets/projects/project-09.webp",
+    "thumb": "/assets/projects/project-09-thumb.webp"
+  },
+  {
+    "id": "project-10",
+    "title": {
+      "en": "Rooftop package unit inspection",
+      "es": "Inspección de unidad paquete rooftop"
+    },
+    "tags": [
+      "commercial",
+      "rooftop",
+      "maintenance",
+      "repair"
+    ],
+    "width": 900,
+    "height": 675,
+    "src": "/assets/projects/project-10.webp",
+    "thumb": "/assets/projects/project-10-thumb.webp"
+  },
+  {
+    "id": "project-14",
+    "title": {
+      "en": "HVAC project equipment and materials",
+      "es": "Equipos y materiales para proyecto HVAC"
+    },
+    "tags": [
+      "commercial",
+      "installation"
+    ],
+    "width": 850,
+    "height": 638,
+    "src": "/assets/projects/project-14.webp",
+    "thumb": "/assets/projects/project-14-thumb.webp"
+  },
+  {
+    "id": "project-49",
+    "title": {
+      "en": "Commercial space mini-split",
+      "es": "Mini-split en espacio comercial"
+    },
+    "tags": [
+      "commercial",
+      "installation"
+    ],
+    "width": 525,
+    "height": 700,
+    "src": "/assets/projects/project-49.webp",
+    "thumb": "/assets/projects/project-49-thumb.webp"
+  },
+  {
+    "id": "archive-1",
+    "title": {
+      "en": "Mini-split for a commercial property",
+      "es": "Mini-split para propiedad comercial"
+    },
+    "tags": [
+      "commercial",
+      "installation"
+    ],
+    "width": 2048,
+    "height": 1536,
+    "src": "/assets/projects/archive-1.webp",
+    "thumb": "/assets/projects/archive-1-thumb.webp"
+  },
+  {
+    "id": "archive-4",
+    "title": {
+      "en": "Commercial mini-split installation",
+      "es": "Instalación comercial de mini-split"
+    },
+    "tags": [
+      "commercial",
+      "installation"
+    ],
+    "width": 2048,
+    "height": 1536,
+    "src": "/assets/projects/archive-4.webp",
+    "thumb": "/assets/projects/archive-4-thumb.webp"
+  },
+  {
+    "id": "project-11",
+    "title": {
+      "en": "YORK packaged HVAC equipment",
+      "es": "Equipo HVAC tipo paquete YORK"
+    },
+    "tags": [
+      "installation",
+      "service"
+    ],
+    "width": 1536,
+    "height": 1152,
+    "src": "/assets/projects/project-11.webp",
+    "thumb": "/assets/projects/project-11-thumb.webp"
+  },
+  {
+    "id": "project-12",
+    "title": {
+      "en": "Packaged unit replacement in progress",
+      "es": "Reemplazo de unidad paquete en proceso"
+    },
+    "tags": [
+      "installation",
+      "service"
+    ],
+    "width": 540,
+    "height": 720,
+    "src": "/assets/projects/project-12.webp",
+    "thumb": "/assets/projects/project-12-thumb.webp"
+  },
+  {
+    "id": "project-13",
+    "title": {
+      "en": "HVAC controls and component inspection",
+      "es": "Inspección de controles y componentes HVAC"
+    },
+    "tags": [
+      "repair",
+      "service"
+    ],
+    "width": 1152,
+    "height": 1536,
+    "src": "/assets/projects/project-13.webp",
+    "thumb": "/assets/projects/project-13-thumb.webp"
+  },
+  {
+    "id": "project-15",
+    "title": {
+      "en": "Insulation and ductwork preparation",
+      "es": "Preparación de aislamiento y ductos"
+    },
+    "tags": [
+      "ductwork",
+      "installation"
+    ],
+    "width": 850,
+    "height": 638,
+    "src": "/assets/projects/project-15.webp",
+    "thumb": "/assets/projects/project-15-thumb.webp"
+  },
+  {
+    "id": "project-16",
+    "title": {
+      "en": "Outdoor mini-split installation",
+      "es": "Instalación de mini-split exterior"
+    },
+    "tags": [
+      "residential",
+      "installation"
+    ],
+    "width": 540,
+    "height": 720,
+    "src": "/assets/projects/project-16.webp",
+    "thumb": "/assets/projects/project-16-thumb.webp"
+  },
+  {
+    "id": "project-17",
+    "title": {
+      "en": "Mini-split outdoor unit",
+      "es": "Unidad exterior de mini-split"
+    },
+    "tags": [
+      "residential",
+      "installation"
+    ],
+    "width": 540,
+    "height": 720,
+    "src": "/assets/projects/project-17.webp",
+    "thumb": "/assets/projects/project-17-thumb.webp"
+  },
+  {
+    "id": "project-18",
+    "title": {
+      "en": "Residential condenser service",
+      "es": "Servicio de condensadora residencial"
+    },
+    "tags": [
+      "residential",
+      "maintenance"
+    ],
+    "width": 540,
+    "height": 720,
+    "src": "/assets/projects/project-18.webp",
+    "thumb": "/assets/projects/project-18-thumb.webp"
+  },
+  {
+    "id": "project-19",
+    "title": {
+      "en": "Inspection of an HVAC component",
+      "es": "Inspección de componente HVAC"
+    },
+    "tags": [
+      "maintenance",
+      "repair"
+    ],
+    "width": 540,
+    "height": 720,
+    "src": "/assets/projects/project-19.webp",
+    "thumb": "/assets/projects/project-19-thumb.webp"
+  },
+  {
+    "id": "project-20",
+    "title": {
+      "en": "Air conditioning maintenance visit",
+      "es": "Visita de mantenimiento de aire acondicionado"
+    },
+    "tags": [
+      "residential",
+      "maintenance"
+    ],
+    "width": 540,
+    "height": 720,
+    "src": "/assets/projects/project-20.webp",
+    "thumb": "/assets/projects/project-20-thumb.webp"
+  },
+  {
+    "id": "project-22",
+    "title": {
+      "en": "Attic air handler and ductwork",
+      "es": "Manejadora de aire y ductos en ático"
+    },
+    "tags": [
+      "ductwork",
+      "installation"
+    ],
+    "width": 850,
+    "height": 638,
+    "src": "/assets/projects/project-22.webp",
+    "thumb": "/assets/projects/project-22-thumb.webp"
+  },
+  {
+    "id": "project-23",
+    "title": {
+      "en": "Duct installation in progress",
+      "es": "Instalación de ductos en proceso"
+    },
+    "tags": [
+      "ductwork",
+      "installation"
+    ],
+    "width": 540,
+    "height": 720,
+    "src": "/assets/projects/project-23.webp",
+    "thumb": "/assets/projects/project-23-thumb.webp"
+  },
+  {
+    "id": "project-24",
+    "title": {
+      "en": "Outdoor equipment diagnostics",
+      "es": "Diagnóstico de equipo exterior"
+    },
+    "tags": [
+      "service",
+      "repair"
+    ],
+    "width": 540,
+    "height": 720,
+    "src": "/assets/projects/project-24.webp",
+    "thumb": "/assets/projects/project-24-thumb.webp"
+  },
+  {
+    "id": "project-25",
+    "title": {
+      "en": "Outdoor AC equipment service",
+      "es": "Servicio de equipo exterior"
+    },
+    "tags": [
+      "residential",
+      "service"
+    ],
+    "width": 540,
+    "height": 720,
+    "src": "/assets/projects/project-25.webp",
+    "thumb": "/assets/projects/project-25-thumb.webp"
+  },
+  {
+    "id": "project-26",
+    "title": {
+      "en": "System testing with digital gauges",
+      "es": "Pruebas del sistema con manómetros digitales"
+    },
+    "tags": [
+      "maintenance",
+      "service"
+    ],
+    "width": 540,
+    "height": 720,
+    "src": "/assets/projects/project-26.webp",
+    "thumb": "/assets/projects/project-26-thumb.webp"
+  },
+  {
+    "id": "project-27",
+    "title": {
+      "en": "Packaged equipment replacement",
+      "es": "Reemplazo de equipo paquete"
+    },
+    "tags": [
+      "installation",
+      "service"
+    ],
+    "width": 540,
+    "height": 720,
+    "src": "/assets/projects/project-27.webp",
+    "thumb": "/assets/projects/project-27-thumb.webp"
+  },
+  {
+    "id": "project-28",
+    "title": {
+      "en": "Attic HVAC and air distribution",
+      "es": "HVAC y distribución de aire en ático"
+    },
+    "tags": [
+      "ductwork",
+      "installation"
+    ],
+    "width": 850,
+    "height": 638,
+    "src": "/assets/projects/project-28.webp",
+    "thumb": "/assets/projects/project-28-thumb.webp"
+  },
+  {
+    "id": "project-31",
+    "title": {
+      "en": "Air handler and duct connections",
+      "es": "Manejadora de aire y conexiones de ductos"
+    },
+    "tags": [
+      "ductwork",
+      "installation"
+    ],
+    "width": 850,
+    "height": 638,
+    "src": "/assets/projects/project-31.webp",
+    "thumb": "/assets/projects/project-31-thumb.webp"
+  },
+  {
+    "id": "project-32",
+    "title": {
+      "en": "Air distribution ductwork",
+      "es": "Ductos de distribución de aire"
+    },
+    "tags": [
+      "ductwork",
+      "installation"
+    ],
+    "width": 850,
+    "height": 638,
+    "src": "/assets/projects/project-32.webp",
+    "thumb": "/assets/projects/project-32-thumb.webp"
+  },
+  {
+    "id": "project-33",
+    "title": {
+      "en": "Ductwork installation detail",
+      "es": "Detalle de instalación de ductos"
+    },
+    "tags": [
+      "ductwork",
+      "installation"
+    ],
+    "width": 850,
+    "height": 638,
+    "src": "/assets/projects/project-33.webp",
+    "thumb": "/assets/projects/project-33-thumb.webp"
+  },
+  {
+    "id": "project-34",
+    "title": {
+      "en": "Duct installation work",
+      "es": "Trabajo de instalación de ductos"
+    },
+    "tags": [
+      "ductwork",
+      "installation"
+    ],
+    "width": 487,
+    "height": 650,
+    "src": "/assets/projects/project-34.webp",
+    "thumb": "/assets/projects/project-34-thumb.webp"
+  },
+  {
+    "id": "project-35",
+    "title": {
+      "en": "Outdoor unit repair work",
+      "es": "Trabajo de reparación de unidad exterior"
+    },
+    "tags": [
+      "repair",
+      "service"
+    ],
+    "width": 1152,
+    "height": 1536,
+    "src": "/assets/projects/project-35.webp",
+    "thumb": "/assets/projects/project-35-thumb.webp"
+  },
+  {
+    "id": "project-36",
+    "title": {
+      "en": "Attic ductwork project",
+      "es": "Proyecto de ductos en ático"
+    },
+    "tags": [
+      "ductwork",
+      "installation"
+    ],
+    "width": 1152,
+    "height": 1536,
+    "src": "/assets/projects/project-36.webp",
+    "thumb": "/assets/projects/project-36-thumb.webp"
+  },
+  {
+    "id": "project-37",
+    "title": {
+      "en": "Insulated ductwork and equipment",
+      "es": "Ductos aislados y equipo HVAC"
+    },
+    "tags": [
+      "ductwork",
+      "installation"
+    ],
+    "width": 1152,
+    "height": 1536,
+    "src": "/assets/projects/project-37.webp",
+    "thumb": "/assets/projects/project-37-thumb.webp"
+  },
+  {
+    "id": "project-45",
+    "title": {
+      "en": "Mini-split installation in progress",
+      "es": "Instalación de mini-split en proceso"
+    },
+    "tags": [
+      "residential",
+      "installation"
+    ],
+    "width": 525,
+    "height": 700,
+    "src": "/assets/projects/project-45.webp",
+    "thumb": "/assets/projects/project-45-thumb.webp"
+  },
+  {
+    "id": "project-46",
+    "title": {
+      "en": "Indoor mini-split installation",
+      "es": "Instalación de mini-split interior"
+    },
+    "tags": [
+      "residential",
+      "installation"
+    ],
+    "width": 900,
+    "height": 675,
+    "src": "/assets/projects/project-46.webp",
+    "thumb": "/assets/projects/project-46-thumb.webp"
+  },
+  {
+    "id": "project-47",
+    "title": {
+      "en": "Outdoor mini-split equipment",
+      "es": "Equipo exterior de mini-split"
+    },
+    "tags": [
+      "residential",
+      "installation"
+    ],
+    "width": 525,
+    "height": 700,
+    "src": "/assets/projects/project-47.webp",
+    "thumb": "/assets/projects/project-47-thumb.webp"
+  },
+  {
+    "id": "project-48",
+    "title": {
+      "en": "Wall-mounted mini-split",
+      "es": "Mini-split de pared"
+    },
+    "tags": [
+      "residential",
+      "installation"
+    ],
+    "width": 900,
+    "height": 675,
+    "src": "/assets/projects/project-48.webp",
+    "thumb": "/assets/projects/project-48-thumb.webp"
+  },
+  {
+    "id": "project-50",
+    "title": {
+      "en": "Mini-split outdoor unit installation",
+      "es": "Instalación de unidad exterior de mini-split"
+    },
+    "tags": [
+      "installation"
+    ],
+    "width": 525,
+    "height": 700,
+    "src": "/assets/projects/project-50.webp",
+    "thumb": "/assets/projects/project-50-thumb.webp"
+  },
+  {
+    "id": "project-51",
+    "title": {
+      "en": "Multi-zone outdoor equipment",
+      "es": "Equipo exterior multizona"
+    },
+    "tags": [
+      "installation",
+      "service"
+    ],
+    "width": 525,
+    "height": 700,
+    "src": "/assets/projects/project-51.webp",
+    "thumb": "/assets/projects/project-51-thumb.webp"
+  },
+  {
+    "id": "project-52",
+    "title": {
+      "en": "Multi-zone system service",
+      "es": "Servicio de sistema multizona"
+    },
+    "tags": [
+      "maintenance",
+      "repair",
+      "service"
+    ],
+    "width": 525,
+    "height": 700,
+    "src": "/assets/projects/project-52.webp",
+    "thumb": "/assets/projects/project-52-thumb.webp"
+  },
+  {
+    "id": "project-53",
+    "title": {
+      "en": "Ceiling cassette installation",
+      "es": "Instalación de cassette de techo"
+    },
+    "tags": [
+      "residential",
+      "installation"
+    ],
+    "width": 525,
+    "height": 700,
+    "src": "/assets/projects/project-53.webp",
+    "thumb": "/assets/projects/project-53-thumb.webp"
+  },
+  {
+    "id": "project-54",
+    "title": {
+      "en": "Exterior mini-split installation",
+      "es": "Instalación exterior de mini-split"
+    },
+    "tags": [
+      "residential",
+      "installation"
+    ],
+    "width": 525,
+    "height": 700,
+    "src": "/assets/projects/project-54.webp",
+    "thumb": "/assets/projects/project-54-thumb.webp"
+  },
+  {
+    "id": "archive-2",
+    "title": {
+      "en": "Outdoor unit diagnostics",
+      "es": "Diagnóstico de unidad exterior"
+    },
+    "tags": [
+      "service",
+      "repair"
+    ],
+    "width": 1536,
+    "height": 2048,
+    "src": "/assets/projects/archive-2.webp",
+    "thumb": "/assets/projects/archive-2-thumb.webp"
+  },
+  {
+    "id": "archive-3",
+    "title": {
+      "en": "Texcold installation work",
+      "es": "Trabajo de instalación de Texcold"
+    },
+    "tags": [
+      "installation"
+    ],
+    "width": 1536,
+    "height": 2048,
+    "src": "/assets/projects/archive-3.webp",
+    "thumb": "/assets/projects/archive-3-thumb.webp"
+  },
+  {
+    "id": "archive-5",
+    "title": {
+      "en": "Compressor and component repair",
+      "es": "Reparación de compresor y componentes"
+    },
+    "tags": [
+      "repair",
+      "service"
+    ],
+    "width": 2048,
+    "height": 1536,
+    "src": "/assets/projects/archive-5.webp",
+    "thumb": "/assets/projects/archive-5-thumb.webp"
+  },
+  {
+    "id": "mini-split-technician",
+    "title": {
+      "en": "Mini-split installation by Texcold",
+      "es": "Instalación de mini-split por Texcold"
+    },
+    "tags": [
+      "residential",
+      "installation"
+    ],
+    "width": 1536,
+    "height": 1152,
+    "src": "/assets/projects/mini-split-technician.webp",
+    "thumb": "/assets/projects/mini-split-technician-thumb.webp"
+  },
+  {
+    "id": "condenser-cleaning",
+    "title": {
+      "en": "Outdoor condenser cleaning",
+      "es": "Limpieza de condensadora exterior"
+    },
+    "tags": [
+      "residential",
+      "maintenance"
+    ],
+    "width": 952,
+    "height": 1200,
+    "src": "/assets/projects/condenser-cleaning.webp",
+    "thumb": "/assets/projects/condenser-cleaning-thumb.webp"
+  }
+]
