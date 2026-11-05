@@ -1,6 +1,6 @@
 {
   "name": "texcold-hvac-website",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "private": true,
   "description": "Private Texcold staging website, real project gallery and interactive service guide",
   "scripts": {

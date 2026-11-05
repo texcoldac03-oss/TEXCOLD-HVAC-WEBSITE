@@ -15,7 +15,7 @@ function renderPage(pathname, lang='en', contact={}) {
   const req=(service,property='')=>url('/contact',{...(service?{service}:{}),...(property?{property}: {})});
   const pById=id=>projects.find(p=>p.id===id);
   const photo=(p,lightbox=true)=>p?`<figure class="work-card" data-tags="${p.tags.join(' ')}" data-project="${p.id}">${lightbox?`<button class="photo-button" type="button" data-full="${p.src}" aria-label="${esc(t('Enlarge: ','Ampliar: ')+p.title[lang])}">`:''}<img src="${p.thumb}" alt="${esc(p.title[lang])}" width="640" height="480" loading="lazy" decoding="async">${lightbox?'<span class="zoom-mark" aria-hidden="true">↗</span></button>':''}<figcaption>${esc(p.title[lang])}</figcaption></figure>`:'';
-  const photos=(ids)=>`<div class="work-grid">${ids.map(id=>photo(pById(id))).join('')}</div>`;
+  const photos=(ids)=>`<div class="work-grid${ids.length===2?' work-grid--pair':''}">${ids.map(id=>photo(pById(id))).join('')}</div>`;
   const navItems=[['maintenance',tr(services.maintenance.short)],['service',tr(services.service.short)],['installation',tr(services.installation.short)],['repair',tr(services.repair.short)],['commercial',tr(services.commercial.short)],['generators',tr(services.generators.short)],['our-work',t('Our Work','Trabajos')],['contact',t('Contact','Contacto')]];
   const nav=navItems.map(([key,label])=>`<a href="${url('/'+key)}"${page===key?' aria-current="page"':''}>${esc(label)}</a>`).join('');
   const cta=(service,label,property='')=>`<a class="btn" href="${req(service,property)}">${esc(label)} <span aria-hidden="true">›</span></a>`;

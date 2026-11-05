@@ -67,21 +67,6 @@
     "thumb": "/assets/projects/project-10-thumb.webp"
   },
   {
-    "id": "project-14",
-    "title": {
-      "en": "HVAC project equipment and materials",
-      "es": "Equipos y materiales para proyecto HVAC"
-    },
-    "tags": [
-      "commercial",
-      "installation"
-    ],
-    "width": 850,
-    "height": 638,
-    "src": "/assets/projects/project-14.webp",
-    "thumb": "/assets/projects/project-14-thumb.webp"
-  },
-  {
     "id": "project-49",
     "title": {
       "en": "Commercial space mini-split",

@@ -10,3 +10,5 @@
 @media(max-width:900px){.audience-content{padding:23px}.audience-content h3{font-size:24px}.audience-card>img{height:250px}.process-grid{gap:22px}.benefit-grid{gap:20px}.benefit-grid h3{font-size:18px}}
 @media(max-width:600px){.page-links{gap:8px;margin-bottom:26px}.page-links a{font-size:12px;padding:9px 12px}.service-benefits{padding-top:0;padding-bottom:36px}.benefit-grid{grid-template-columns:1fr;gap:22px;padding-top:25px}.benefit-grid h3{font-size:21px;margin-bottom:8px}.benefit-grid p{font-size:15px}.audience-grid{grid-template-columns:1fr;gap:23px;margin-top:24px}.audience-card>img{height:270px}.audience-content{padding:23px 20px}.audience-content h3{font-size:25px}.audience-content>.btn{font-size:14px;width:100%}.process-grid{grid-template-columns:1fr;gap:27px}.process-grid h3{font-size:22px}.process-grid p{font-size:15px}.step-number{margin-bottom:13px}}
 .service-feature--maintenance img{object-position:center top}.audience-card>img{object-position:center 35%}
+
+.work-grid--pair{grid-template-columns:repeat(2,minmax(0,1fr))}@media(max-width:600px){.work-grid--pair{grid-template-columns:1fr}}

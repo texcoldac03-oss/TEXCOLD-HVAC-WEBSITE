@@ -19,7 +19,7 @@ Routes: `/`, `/maintenance`, `/service`, `/installation`, `/repair`, `/commercia
 
 ## Photos and branding
 
-`projects.json` contains **45 distinct real Texcold photographs**, recovered from the latest approved website package, original project photographs and previous Texcold photo bundles. Repeated copies are consolidated, with larger original files preferred. The source collection includes commercial rooftops, equipment service and repairs, ductwork, mini-splits and residential work.
+`projects.json` contains **44 real Texcold photographs**, recovered from the latest approved website package, original project photographs and previous Texcold photo bundles. Repeated copies are consolidated, with larger original files preferred. The source collection includes commercial rooftops, equipment service and repairs, ductwork, mini-splits and residential work.
 
 `public/assets/projects` holds a full image (up to 1600px) and a smaller gallery thumbnail for every photograph. All images have been decoded and checked; EXIF orientation is applied on export. The original logo and approved Houston cover are retained in `public/assets`. The generator image is explicitly labeled illustrative and is not represented as a completed Texcold project or product inventory.
 
@@ -53,3 +53,5 @@ The existing optional AI endpoint is isolated in `lib/assistant.js`; `/api/chat`
 ## Service page review — November 2026
 
 Each service page now includes navigation within the page, tailored benefits and scope, residential/commercial contact options with the property preselected, a three-step explanation, relevant Texcold project photos and FAQs. Generator inquiries remain sales inquiries with an illustrative image. The private preview login preserves the requested service page and language; return destinations are restricted to this site.
+
+The equipment-and-materials photograph with the yellow truck has been removed from the active gallery and commercial page at the owner’s request. Its full image and thumbnail are no longer deployed.

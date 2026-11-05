@@ -19,8 +19,9 @@ test('all published routes, internal links, anchors and project images resolve i
     }
     for(const [,src] of html.matchAll(/(?:src|data-full)="([^"]+)"/g))assert.ok(fs.existsSync(path.join(__dirname,'../public',src)),`missing asset ${src}`);
     assert.doesNotMatch(html,/https:\/\/commons\.wikimedia|Photo coming soon|Demo assistant/);
+    assert.doesNotMatch(html,/project-(?:14|30)(?:-thumb)?\.webp/);
   }
-  assert.equal(projects.length,45);assert.equal(new Set(projects.map(p=>p.src)).size,45);
+  assert.equal(projects.length,44);assert.equal(new Set(projects.map(p=>p.src)).size,44);
   for(const project of projects){assert.ok(project.tags.length);for(const prop of ['src','thumb'])assert.ok(fs.statSync(path.join(__dirname,'../public',project[prop])).size>1000);}
 });
 
@@ -53,6 +54,7 @@ test('private staging protects pages and photos, rejects bad credentials and loc
   assert.match(await (await fetch(base,auth)).text(),/Reliable Comfort\./);
   assert.equal((await fetch(base+projects[0].src,auth)).status,200);
   assert.equal((await fetch(base+'/server.js',auth)).status,404);
+  for(const image of ['project-14.webp','project-14-thumb.webp','project-30.webp','project-30-thumb.webp'])assert.equal((await fetch(base+'/assets/projects/'+image,auth)).status,404,image);
   assert.equal((await fetch(base+'/.env',auth)).status,404);
   const tampered={headers:{cookie:cookie.split(';')[0]+'x'}};assert.ok((await (await fetch(base,tampered)).text()).includes('Private website preview'));
   const api=await fetch(base+'/api/chat',{...auth,method:'POST',headers:{...auth.headers,'content-type':'application/json'},body:JSON.stringify({message:'Maintenance'})});assert.equal(api.status,503);assert.equal((await api.json()).error,'AI_NOT_CONFIGURED');
