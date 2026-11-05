@@ -68,17 +68,20 @@
     if(['residential','commercial'].includes(query.get('property')))propertyField.value=query.get('property');
     const prefills={maintenance:t('I would like to discuss preventive maintenance.','Me gustaría consultar sobre mantenimiento preventivo.'),service:t('I would like an evaluation of comfort or airflow concerns.','Me gustaría evaluar problemas de confort o flujo de aire.'),repair:t('My cooling or heating system is not working properly.','Mi sistema de aire acondicionado o calefacción no funciona correctamente.'),installation:t('I would like to discuss a new or replacement HVAC system.','Me gustaría consultar por un sistema HVAC nuevo o un reemplazo.'),generators:t('I would like information about backup generators.','Me gustaría recibir información sobre generadores de respaldo.')};
     if(prefills[query.get('need')])form.elements.details.value=prefills[query.get('need')];
+    const phoneField=form.elements.phone;
+    function validatePhone(){const value=phoneField.value.trim(),digits=value.replace(/\D/g,'');phoneField.setCustomValidity(value&&(digits.length<10||digits.length>15||!/^[+\d\s().-]+$/.test(value))?t('Enter a phone number with 10 to 15 digits.','Escribe un teléfono de 10 a 15 dígitos.'):'');}
+    phoneField.addEventListener('input',validatePhone);
     form.addEventListener('input',()=>$('#request-result').hidden=true);
     form.addEventListener('change',()=>$('#request-result').hidden=true);
     form.addEventListener('submit',e=>{
-      e.preventDefault();if(!form.reportValidity())return;
+      e.preventDefault();validatePhone();if(!form.reportValidity())return;
       const data=Object.fromEntries(new FormData(form));const clean=s=>String(s).trim();
-      const summary=[t('Texcold service inquiry','Consulta de servicio Texcold'),'',t('Name: ','Nombre: ')+clean(data.name),t('Phone: ','Teléfono: ')+clean(data.phone),t('Property: ','Propiedad: ')+(data.property==='commercial'?t('Commercial / business','Comercial / negocio'):t('Residential / home','Residencial / hogar')),t('Service: ','Servicio: ')+serviceNames[data.service],...(clean(data.zip)?[t('ZIP code: ','Código postal: ')+clean(data.zip)]:[]),'',clean(data.details)].join('\n');
+      const summary=[t('Texcold quote request','Solicitud de cotización Texcold'),'',t('Name: ','Nombre: ')+clean(data.name),t('Phone: ','Teléfono: ')+clean(data.phone),t('Service address: ','Dirección del servicio: ')+[clean(data.address),clean(data.unit),clean(data.city),clean(data.state)+' '+clean(data.zip)].filter(Boolean).join(', '),t('Property: ','Propiedad: ')+(data.property==='commercial'?t('Commercial / business','Comercial / negocio'):t('Residential / home','Residencial / hogar')),t('Service: ','Servicio: ')+serviceNames[data.service],'',clean(data.details)].join('\n');
       $('#request-summary').value=summary;
-      const subject=t('HVAC inquiry — ','Consulta HVAC — ')+serviceNames[data.service];
+      const subject=t('Quote request — ','Solicitud de cotización — ')+serviceNames[data.service];
       $('#email-request').href='mailto:'+document.body.dataset.email+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(summary);
       $('#copy-status').textContent='';$('#request-result').hidden=false;$('#request-result').focus({preventScroll:true});$('#request-result').scrollIntoView({block:'nearest',behavior:'smooth'});
     });
-    $('#copy-request').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('#request-summary').value);$('#copy-status').textContent=t('Copied. You can paste your inquiry into an email or message.','Copiado. Puedes pegar tu consulta en un correo o mensaje.');}catch{$('#request-summary').focus();$('#request-summary').select();$('#copy-status').textContent=t('Select and copy the details above.','Selecciona y copia los detalles de arriba.');}});
+    $('#copy-request').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('#request-summary').value);$('#copy-status').textContent=t('Copied. You can paste your quote request into an email or message.','Copiado. Puedes pegar tu solicitud de cotización en un correo o mensaje.');}catch{$('#request-summary').focus();$('#request-summary').select();$('#copy-status').textContent=t('Select and copy the details above.','Selecciona y copia los detalles de arriba.');}});
   }
 })();

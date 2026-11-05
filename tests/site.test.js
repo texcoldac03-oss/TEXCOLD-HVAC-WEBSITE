@@ -17,7 +17,7 @@ test('all published routes, internal links, anchors and project images resolve i
       if(href.startsWith('#')){assert.ok(ids.includes(href.slice(1)),`missing anchor ${href} on ${route}`);continue;}
       const pathname=href.split('#')[0];assert.ok(routes.includes(pathname)||fs.existsSync(path.join(__dirname,'../public',pathname)),`broken link ${href} on ${route}`);
     }
-    for(const [,src] of html.matchAll(/(?:src|data-full)="([^"]+)"/g))assert.ok(fs.existsSync(path.join(__dirname,'../public',src)),`missing asset ${src}`);
+    for(const [,src] of html.matchAll(/(?:src|data-full)="([^"]+)"/g))assert.ok(fs.existsSync(path.join(__dirname,'../public',new URL(src,'http://localhost').pathname)),`missing asset ${src}`);
     assert.doesNotMatch(html,/https:\/\/commons\.wikimedia|Photo coming soon|Demo assistant/);
     assert.doesNotMatch(html,/project-(?:14|30)(?:-thumb)?\.webp/);
   }

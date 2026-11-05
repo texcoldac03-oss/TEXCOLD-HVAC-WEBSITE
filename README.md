@@ -29,7 +29,7 @@ Set a strong `PREVIEW_PASSWORD` **only in the Railway staging service variables*
 
 ## Customer contact
 
-The service selector preserves the service and residential/commercial context when opening Contact. The inquiry form validates customer details and prepares an **email draft**, with a copy option. It never claims that a request has been sent or that an appointment is confirmed. Delivery happens only when the visitor sends from their email application; no customer inquiry is stored by this app.
+The service selector preserves the service and residential/commercial context when opening Contact. The quote request form requires a name, phone number, service street address, city, state, ZIP code and project details. Apartment or suite is optional. It validates customer details and prepares an **email draft**, with a copy option; the phone and full service address are included in the draft. It never claims that a request has been sent or that an appointment is confirmed. Delivery happens only when the visitor sends from their email application; no customer inquiry is stored by this app.
 
 Default contact details were verified against Texcold's existing public website: `(281) 223-6761`, `texcold@hotmail.com`. The existing website was read only. Replace these centrally using Railway variables:
 
