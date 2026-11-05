@@ -24,6 +24,17 @@ test('all published routes, internal links, anchors and project images resolve i
   for(const project of projects){assert.ok(project.tags.length);for(const prop of ['src','thumb'])assert.ok(fs.statSync(path.join(__dirname,'../public',project[prop])).size>1000);}
 });
 
+test('each page displays a project photograph only once, including full image and thumbnail variants',()=>{
+  const routes=['/','/our-work',...Object.keys(services).map(name=>'/'+name)];
+  for(const lang of ['en','es'])for(const route of routes){
+    const html=renderPage(route,lang);
+    const images=[...html.matchAll(/\bsrc="(\/assets\/projects\/[^"?]+)"/g)].map(match=>match[1].replace(/-thumb\.webp$/,'.webp'));
+    assert.equal(images.length,new Set(images).size,`Repeated project photograph on ${route} (${lang})`);
+  }
+  const covers=Object.values(services).map(service=>service.image).filter(Boolean);
+  assert.equal(covers.length,new Set(covers).size,'Service cover photographs should be different');
+});
+
 async function startServer(t,extra={}){
   const port=String(19000+Math.floor(Math.random()*10000));
   const child=spawn(process.execPath,['server.js'],{cwd:path.join(__dirname,'..'),env:{...process.env,PORT:port,PREVIEW_PASSWORD:'',LOCAL_PREVIEW:'',...extra},stdio:['ignore','pipe','pipe']});

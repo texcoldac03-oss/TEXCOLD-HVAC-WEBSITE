@@ -10,8 +10,8 @@ module.exports = {
     ],
     audienceTitle: ['Maintenance for your property', 'Mantenimiento para tu propiedad'],
     audiences: [
-      {property:'residential',photo:'condenser-cleaning',title:['For your home','Para tu hogar'],text:['Seasonal care for home cooling and heating equipment, air handlers and mini-splits. Tell us about your system and any changes in comfort.','Atención para aire acondicionado, calefacción, manejadoras y mini-splits residenciales. Cuéntanos sobre tu equipo y cualquier cambio en el confort.'],cta:['Request home maintenance','Solicitar mantenimiento residencial']},
-      {property:'commercial',photo:'project-10',title:['For your business','Para tu negocio'],text:['Planned maintenance for commercial HVAC, packaged units and rooftop systems. Include the number of units and access requirements in your request.','Mantenimiento programado de HVAC comercial, unidades paquete y sistemas rooftop. Incluye la cantidad de equipos y los requisitos de acceso en tu solicitud.'],cta:['Request commercial maintenance','Solicitar mantenimiento comercial']}
+      {property:'residential',photo:'project-18',title:['For your home','Para tu hogar'],text:['Seasonal care for home cooling and heating equipment, air handlers and mini-splits. Tell us about your system and any changes in comfort.','Atención para aire acondicionado, calefacción, manejadoras y mini-splits residenciales. Cuéntanos sobre tu equipo y cualquier cambio en el confort.'],cta:['Request home maintenance','Solicitar mantenimiento residencial']},
+      {property:'commercial',photo:'project-49',title:['For your business','Para tu negocio'],text:['Planned maintenance for commercial HVAC, packaged units and rooftop systems. Include the number of units and access requirements in your request.','Mantenimiento programado de HVAC comercial, unidades paquete y sistemas rooftop. Incluye la cantidad de equipos y los requisitos de acceso en tu solicitud.'],cta:['Request commercial maintenance','Solicitar mantenimiento comercial']}
     ],
     processTitle: ['A clear path to preventive care', 'El camino hacia un buen mantenimiento'],
     steps: [
@@ -32,8 +32,8 @@ module.exports = {
     ],
     audienceTitle: ['One team. Service for your home or business.', 'Un mismo equipo para tu hogar o negocio.'],
     audiences: [
-      {property:'residential',photo:'project-26',title:['Comfort throughout your home','Confort en todo tu hogar'],text:['For central cooling, heating equipment and mini-splits. Tell us which rooms feel different, whether airflow has changed and when the concern started.','Para aire acondicionado central, calefacción y mini-splits. Cuéntanos qué habitaciones se sienten diferentes, si cambió el flujo de aire y cuándo comenzó el problema.'],cta:['Request residential service','Solicitar servicio residencial']},
-      {property:'commercial',photo:'project-09',title:['Service that considers your building','Servicio que considera tu edificio'],text:['For offices, commercial spaces and warehouses, including rooftop and packaged equipment. Share the affected areas, unit count and service priorities.','Para oficinas, locales comerciales y bodegas, incluyendo equipos rooftop y paquete. Indica las áreas afectadas, la cantidad de unidades y tus prioridades.'],cta:['Request commercial service','Solicitar servicio comercial']}
+      {property:'residential',photo:'project-25',title:['Comfort throughout your home','Confort en todo tu hogar'],text:['For central cooling, heating equipment and mini-splits. Tell us which rooms feel different, whether airflow has changed and when the concern started.','Para aire acondicionado central, calefacción y mini-splits. Cuéntanos qué habitaciones se sienten diferentes, si cambió el flujo de aire y cuándo comenzó el problema.'],cta:['Request residential service','Solicitar servicio residencial']},
+      {property:'commercial',photo:'archive-1',title:['Service that considers your building','Servicio que considera tu edificio'],text:['For offices, commercial spaces and warehouses, including rooftop and packaged equipment. Share the affected areas, unit count and service priorities.','Para oficinas, locales comerciales y bodegas, incluyendo equipos rooftop y paquete. Indica las áreas afectadas, la cantidad de unidades y tus prioridades.'],cta:['Request commercial service','Solicitar servicio comercial']}
     ],
     processTitle: ['From your first call to a clear recommendation', 'De tu primera consulta a una recomendación clara'],
     steps: [
@@ -76,7 +76,7 @@ module.exports = {
     audienceTitle: ['Repair requests for homes & businesses', 'Reparaciones para hogares y negocios'],
     audiences: [
       {property:'residential',photo:'project-52',title:['Residential AC & heating','Aire y calefacción residencial'],text:['Request help with a system that will not start, does not reach the set temperature or has airflow or drainage issues.','Solicita atención si el sistema no enciende, no alcanza la temperatura o tiene problemas de flujo de aire o drenaje.'],cta:['Request a home repair','Solicitar reparación residencial']},
-      {property:'commercial',photo:'project-08',title:['Commercial & rooftop equipment','Equipos comerciales y rooftop'],text:['Describe the affected unit, building use and symptoms so we can discuss the appropriate next step.','Describe la unidad afectada, el uso del edificio y los síntomas para evaluar el siguiente paso.'],cta:['Request a commercial repair','Solicitar reparación comercial']}
+      {property:'commercial',photo:'archive-2',title:['Commercial & rooftop equipment','Equipos comerciales y rooftop'],text:['Describe the affected unit, building use and symptoms so we can discuss the appropriate next step.','Describe la unidad afectada, el uso del edificio y los síntomas para evaluar el siguiente paso.'],cta:['Request a commercial repair','Solicitar reparación comercial']}
     ],
     processTitle: ['From symptoms to repair options', 'De los síntomas a las opciones de reparación'],
     steps: [
@@ -96,8 +96,8 @@ module.exports = {
     ],
     audienceTitle: ['Equipment & air distribution', 'Equipos y distribución de aire'],
     audiences: [
-      {property:'commercial',photo:'project-07',title:['Rooftop service & maintenance','Servicio y mantenimiento rooftop'],text:['Request equipment evaluation, preventive maintenance or repairs for your commercial systems.','Solicita evaluación, mantenimiento preventivo o reparaciones para tus sistemas comerciales.'],cta:['Discuss rooftop equipment','Consultar por equipos rooftop']},
-      {property:'commercial',photo:'project-31',title:['HVAC installations & ductwork','Instalaciones HVAC y ductos'],text:['Review equipment and air distribution needs for a new project or a building modification.','Revisa necesidades de equipos y distribución de aire para un proyecto nuevo o una modificación del edificio.'],cta:['Discuss a commercial project','Consultar proyecto comercial']}
+      {property:'commercial',photo:'project-10',title:['Rooftop service & maintenance','Servicio y mantenimiento rooftop'],text:['Request equipment evaluation, preventive maintenance or repairs for your commercial systems.','Solicita evaluación, mantenimiento preventivo o reparaciones para tus sistemas comerciales.'],cta:['Discuss rooftop equipment','Consultar por equipos rooftop']},
+      {property:'commercial',photo:'project-49',title:['HVAC installations & ductwork','Instalaciones HVAC y ductos'],text:['Review equipment and air distribution needs for a new project or a building modification.','Revisa necesidades de equipos y distribución de aire para un proyecto nuevo o una modificación del edificio.'],cta:['Discuss a commercial project','Consultar proyecto comercial']}
     ],
     processTitle: ['Start with your building’s needs', 'Comienza con las necesidades de tu edificio'],
     steps: [
