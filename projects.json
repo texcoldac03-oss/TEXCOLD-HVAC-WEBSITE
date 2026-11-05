@@ -668,8 +668,8 @@
   {
     "id": "condenser-cleaning",
     "title": {
-      "en": "Outdoor condenser cleaning",
-      "es": "Limpieza de condensadora exterior"
+      "en": "HVAC component cleaning",
+      "es": "Limpieza de componentes HVAC"
     },
     "tags": [
       "residential",

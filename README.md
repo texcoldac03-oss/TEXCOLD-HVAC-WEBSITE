@@ -49,3 +49,7 @@ The existing optional AI endpoint is isolated in `lib/assistant.js`; `/api/chat`
 ## Validation
 
 `npm test` checks every page in English and Spanish, internal links and anchors, all gallery assets, authenticated access, incorrect credentials, tampered cookies, protected image URLs, omitted password behavior and the unconfigured AI endpoint. Browser checks cover desktop navigation, a 390px mobile layout, menu behavior, selector recommendations, request preselection, draft generation/copying and gallery filtering/lightbox controls.
+
+## Service page review — November 2026
+
+Each service page now includes navigation within the page, tailored benefits and scope, residential/commercial contact options with the property preselected, a three-step explanation, relevant Texcold project photos and FAQs. Generator inquiries remain sales inquiries with an illustrative image. The private preview login preserves the requested service page and language; return destinations are restricted to this site.

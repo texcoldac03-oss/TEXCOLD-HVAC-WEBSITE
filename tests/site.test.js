@@ -50,3 +50,18 @@ test('private staging protects pages and photos, rejects bad credentials and loc
 test('deployment fails closed if a preview password was omitted',async t=>{
   const base=await startServer(t);assert.equal((await fetch(base)).status,503);assert.equal((await fetch(base+'/health')).status,200);
 });
+
+test('preview login returns to a service deep link and rejects external redirects',async t=>{
+  const password='deep-link-test-password';const base=await startServer(t,{PREVIEW_PASSWORD:password});
+  const locked=await (await fetch(base+'/maintenance?lang=es')).text();
+  assert.match(locked,/name="returnTo" value="\/maintenance\?lang=es"/);
+  const login=await fetch(base+'/preview-access',{method:'POST',body:new URLSearchParams({password,returnTo:'/maintenance?lang=es'}),redirect:'manual'});
+  assert.equal(login.status,303);assert.equal(login.headers.get('location'),'/maintenance?lang=es');
+  const page=await (await fetch(base+login.headers.get('location'),{headers:{cookie:login.headers.get('set-cookie').split(';')[0]}})).text();
+  assert.match(page,/<h1>Mantenimiento preventivo<\/h1>/);
+  assert.match(page,/service=maintenance&amp;property=commercial|service=maintenance&property=commercial/);
+  for(const returnTo of ['https://example.com/','//example.com/','/\\example.com/','/unknown']){
+    const response=await fetch(base+'/preview-access',{method:'POST',body:new URLSearchParams({password,returnTo}),redirect:'manual'});
+    assert.equal(response.headers.get('location'),'/',returnTo);
+  }
+});
