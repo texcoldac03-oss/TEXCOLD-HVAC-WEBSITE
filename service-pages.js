@@ -23,25 +23,26 @@ module.exports = {
     workTitle: ['Real maintenance & equipment checks', 'Mantenimiento y revisiones reales']
   },
   service: {
-    whyTitle: ['Understand the issue. Choose the next step.', 'Entiende el problema y elige el siguiente paso.'],
-    scopeTitle: ['What an evaluation can cover', 'Qué puede incluir una evaluación'],
+    whyTitle: ['Understand the issue before the next step.', 'Entiende el problema antes del siguiente paso.'],
+    scopeTitle: ['What we can evaluate', 'Qué podemos evaluar'],
     benefits: [
-      [['Describe the symptoms','Describe los síntomas'],['Uneven rooms, weak airflow or unusual system behavior are a starting point for the evaluation.','Habitaciones desiguales, poco flujo de aire o un comportamiento inusual sirven como punto de partida.']],
-      [['Review the whole concern','Revisamos tu necesidad'],['Equipment condition, heating, cooling and air distribution help define what to inspect.','El estado del equipo, la calefacción, el enfriamiento y la distribución de aire ayudan a definir qué revisar.']],
-      [['Know your options','Conoce tus opciones'],['Find out whether maintenance, repair, ductwork or replacement should be considered.','Conoce si conviene considerar mantenimiento, reparación, ductos o reemplazo.']]
+      [['Cooling & heating','Enfriamiento y calefacción'],['Review how the system operates and the comfort concerns you notice in your home or business.','Revisamos cómo funciona el sistema y los problemas de confort que notas en tu hogar o negocio.']],
+      [['Airflow & controls','Flujo de aire y controles'],['Discuss uneven rooms, weak airflow and thermostat behavior as part of the evaluation.','Evaluamos habitaciones con temperaturas desiguales, poco flujo de aire y el comportamiento del termostato.']],
+      [['Findings you can understand','Resultados que puedes entender'],['Learn what was found and review the recommended options before agreeing to additional work.','Conoce lo que encontramos y revisa las opciones recomendadas antes de acordar trabajos adicionales.']]
     ],
-    audienceTitle: ['Start with the right evaluation', 'Comienza con la evaluación adecuada'],
+    audienceTitle: ['One team. Service for your home or business.', 'Un mismo equipo para tu hogar o negocio.'],
     audiences: [
-      {property:'residential',photo:'project-26',title:['Home comfort concerns','Problemas de confort en casa'],text:['Tell us which rooms are uncomfortable, how the system behaves and when the issue started.','Indica qué habitaciones están incómodas, cómo se comporta el sistema y cuándo comenzó el problema.'],cta:['Request a home evaluation','Solicitar evaluación residencial']},
-      {property:'commercial',photo:'project-07',title:['Commercial equipment & airflow','Equipos comerciales y flujo de aire'],text:['Tell us about the building, affected areas and equipment, including rooftop systems or multiple units.','Cuéntanos sobre el edificio, las áreas afectadas y los equipos, incluyendo sistemas rooftop o varias unidades.'],cta:['Request a commercial evaluation','Solicitar evaluación comercial']}
+      {property:'residential',photo:'project-26',title:['Comfort throughout your home','Confort en todo tu hogar'],text:['For central cooling, heating equipment and mini-splits. Tell us which rooms feel different, whether airflow has changed and when the concern started.','Para aire acondicionado central, calefacción y mini-splits. Cuéntanos qué habitaciones se sienten diferentes, si cambió el flujo de aire y cuándo comenzó el problema.'],cta:['Request residential service','Solicitar servicio residencial']},
+      {property:'commercial',photo:'project-09',title:['Service that considers your building','Servicio que considera tu edificio'],text:['For offices, commercial spaces and warehouses, including rooftop and packaged equipment. Share the affected areas, unit count and service priorities.','Para oficinas, locales comerciales y bodegas, incluyendo equipos rooftop y paquete. Indica las áreas afectadas, la cantidad de unidades y tus prioridades.'],cta:['Request commercial service','Solicitar servicio comercial']}
     ],
-    processTitle: ['From a concern to a clear plan', 'Del problema a un plan claro'],
+    processTitle: ['From your first call to a clear recommendation', 'De tu primera consulta a una recomendación clara'],
     steps: [
-      [['Share what you notice','Cuéntanos qué observas'],['Describe the comfort issue and the type of property and equipment.','Describe el problema de confort y el tipo de propiedad y equipo.']],
-      [['Arrange an evaluation','Coordinamos una evaluación'],['Discuss availability, equipment access and the appropriate service scope.','Consulta disponibilidad, acceso al equipo y alcance del servicio.']],
-      [['Review the next steps','Revisa los siguientes pasos'],['Understand the findings and options before deciding on additional work.','Conoce los resultados y las opciones antes de decidir sobre trabajos adicionales.']]
+      [['Describe what changed','Describe qué cambió'],['Tell us the symptoms, affected areas and property type. You do not need to diagnose the equipment yourself.','Cuéntanos los síntomas, las áreas afectadas y el tipo de propiedad. No necesitas diagnosticar el equipo.']],
+      [['Coordinate the evaluation','Coordinamos la evaluación'],['Discuss availability, equipment access and the visit scope directly with Texcold.','Consulta directamente con Texcold la disponibilidad, el acceso al equipo y el alcance de la visita.']],
+      [['Review the findings together','Revisamos juntos los resultados'],['Understand the recommended service, repair or project options before deciding how to proceed.','Conoce las opciones recomendadas de servicio, reparación o proyecto antes de decidir cómo continuar.']]
     ],
-    workTitle: ['Equipment evaluations in the field', 'Evaluaciones de equipos en el campo']
+    scopeNote: ['Checks depend on the reported issue, equipment condition and accessible components. Any parts or repair work are discussed separately.', 'Las revisiones dependen del problema reportado, el estado del equipo y los componentes accesibles. Cualquier repuesto o reparación se consulta por separado.'],
+    workTitle: ['Real diagnostics & service from the Texcold team', 'Diagnóstico y servicio reales del equipo Texcold']
   },
   installation: {
     whyTitle: ['Plan the equipment and airflow together.', 'Planea el equipo y el flujo de aire juntos.'],
