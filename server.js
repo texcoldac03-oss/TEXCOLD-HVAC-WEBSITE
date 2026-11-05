@@ -25,7 +25,7 @@ const headers={'x-content-type-options':'nosniff','referrer-policy':'same-origin
 const json=(res,status,data)=>{res.writeHead(status,{...headers,'content-type':'application/json; charset=utf-8','cache-control':'no-store'});res.end(JSON.stringify(data));};
 const hits=new Map();
 function allowed(ip,limit=12,windowMs=60000){const now=Date.now();const entry=hits.get(ip)||[];const recent=entry.filter(t=>now-t<windowMs);if(recent.length>=limit)return false;recent.push(now);hits.set(ip,recent);if(hits.size>2000)hits.clear();return true;}
-const previewRoutes=new Set(['/', '/index.html', '/our-work', '/contact', ...Object.keys(services).map(name=>'/'+name)]);
+const previewRoutes=new Set(['/', '/index.html', '/our-work', '/about', '/contact', ...Object.keys(services).map(name=>'/'+name)]);
 function previewReturnPath(value){
   if(typeof value!=='string'||value.length>1000||!value.startsWith('/')||value.startsWith('//')||/[\\\x00-\x1f]/.test(value))return '/';
   try{const target=new URL(value,'http://localhost');return target.origin==='http://localhost'&&previewRoutes.has(target.pathname)?target.pathname+target.search+target.hash:'/';}catch{return '/';}

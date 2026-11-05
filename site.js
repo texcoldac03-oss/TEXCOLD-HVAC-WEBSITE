@@ -1,6 +1,7 @@
 const {services} = require('./content');
 const servicePages = require('./service-pages');
 const homePhotos = require('./home-photos');
+const {renderAboutPage} = require('./about-page');
 const assetVersion = require('./package.json').version;
 const projects = require('./projects.json');
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -11,12 +12,12 @@ function renderPage(pathname, lang='en', contact={}) {
   const phone=contact.phone||'+12812236761', displayPhone=contact.displayPhone||'(281) 223-6761', email=contact.email||'texcold@hotmail.com';
   const url=(path,params={})=>{const q=new URLSearchParams(params);if(es)q.set('lang','es');return path+(q.size?'?'+q:'');};
   const page=pathname.replace(/^\/|\/$/g,'')||'home';
-  if(!['home','our-work','contact',...Object.keys(services)].includes(page)) return null;
+  if(!['home','our-work','about','contact',...Object.keys(services)].includes(page)) return null;
   const req=(service,property='')=>url('/contact',{...(service?{service}:{}),...(property?{property}: {})});
   const pById=id=>projects.find(p=>p.id===id);
   const photo=(p,lightbox=true)=>p?`<figure class="work-card" data-tags="${p.tags.join(' ')}" data-project="${p.id}">${lightbox?`<button class="photo-button" type="button" data-full="${p.src}" aria-label="${esc(t('Enlarge: ','Ampliar: ')+p.title[lang])}">`:''}<img src="${p.thumb}" alt="${esc(p.title[lang])}" width="640" height="480" loading="lazy" decoding="async">${lightbox?'<span class="zoom-mark" aria-hidden="true">↗</span></button>':''}<figcaption>${esc(p.title[lang])}</figcaption></figure>`:'';
   const photos=(ids)=>`<div class="work-grid${ids.length===2?' work-grid--pair':''}">${ids.map(id=>photo(pById(id))).join('')}</div>`;
-  const navItems=[['maintenance',tr(services.maintenance.short)],['service',tr(services.service.short)],['installation',tr(services.installation.short)],['repair',tr(services.repair.short)],['commercial',tr(services.commercial.short)],['generators',tr(services.generators.short)],['our-work',t('Our Work','Trabajos')],['contact',t('Contact','Contacto')]];
+  const navItems=[['maintenance',tr(services.maintenance.short)],['service',tr(services.service.short)],['installation',tr(services.installation.short)],['repair',tr(services.repair.short)],['commercial',tr(services.commercial.short)],['generators',tr(services.generators.short)],['our-work',t('Our Work','Trabajos')],['about',t('About Us','Nosotros')],['contact',t('Contact','Contacto')]];
   const nav=navItems.map(([key,label])=>`<a href="${url('/'+key)}"${page===key?' aria-current="page"':''}>${esc(label)}</a>`).join('');
   const cta=(service,label,property='')=>`<a class="btn" href="${req(service,property)}">${esc(label)} <span aria-hidden="true">›</span></a>`;
   const call=`<a class="btn btn-outline" href="tel:${phone}">${t('Call','Llamar')} ${displayPhone}</a>`;
@@ -44,6 +45,9 @@ function renderPage(pathname, lang='en', contact={}) {
     <section class="process-section" id="process"><div class="section"><p class="eyebrow">${t('YOUR NEXT STEP','TU SIGUIENTE PASO')}</p><h2>${esc(tr(detail.processTitle))}</h2><ol class="process-grid">${detail.steps.map(([heading,copy],index)=>`<li><span class="step-number" aria-hidden="true">${String(index+1).padStart(2,'0')}</span><h3>${esc(tr(heading))}</h3><p>${esc(tr(copy))}</p></li>`).join('')}</ol><p class="process-note">${t('Contact Texcold to confirm the visit scope and availability. Sending an inquiry does not confirm an appointment.','Contacta a Texcold para confirmar el alcance y la disponibilidad. Enviar una consulta no confirma una cita.')}</p></div></section>
     ${s.photos.length?`<section class="section" id="service-work"><div class="section-heading"><div><p class="eyebrow">${t('THE WORK BEHIND THE SERVICE','EL TRABAJO DETRÁS DEL SERVICIO')}</p><h2>${esc(tr(detail.workTitle))}</h2></div><a class="text-link" href="${url('/our-work',{filter:page==='service'?'all':page})}">${t('More Texcold work','Más trabajos de Texcold')} →</a></div>${photos(s.photos)}</section>`:''}
     <section class="section faq-section" id="service-faq"><h2>${t('A few helpful answers','Algunas respuestas útiles')}</h2>${s.faq.map(([q,a])=>`<details><summary>${esc(tr(q))}</summary><p>${esc(tr(a))}</p></details>`).join('')}</section>${selector}`;
+  } else if(page==='about'){
+    title=t('About Us','Nosotros');
+    main=renderAboutPage({t,url,cta,pById,esc,lang});
   } else if(page==='our-work'){
     title=t('Our Work — Real Texcold Projects','Nuestros trabajos — Proyectos reales de Texcold');
     main=`<section class="section gallery-page"><p class="eyebrow">${t('REAL PEOPLE. REAL PROJECTS.','PERSONAS REALES. PROYECTOS REALES.')}</p><h1>${t('Our Work','Nuestros trabajos')}</h1><p class="lead">${t('Explore '+projects.length+' photographs from Texcold’s project collection — commercial rooftop equipment, ductwork, mini-splits, residential systems and service visits.','Explora '+projects.length+' fotografías de nuestra colección: equipos rooftop comerciales, ductos, mini-splits, sistemas residenciales y visitas de servicio.')}</p><div class="gallery-controls" role="group" aria-label="${t('Filter project photographs','Filtrar fotografías de proyectos')}">${Object.entries(categories).map(([key,label])=>`<button type="button" data-filter="${key}" aria-pressed="${key==='all'}"${key==='all'?' class="active"':''}>${tr(label)}</button>`).join('')}</div><p class="gallery-count" id="gallery-count" role="status"></p><div class="work-grid full-gallery">${projects.map(p=>photo(p)).join('')}</div><div class="load-more"><button type="button" class="btn btn-navy" id="load-more">${t('Show more photos','Ver más fotos')} ↓</button></div><noscript><p>${t('All project photographs are displayed below.','Todas las fotografías se muestran abajo.')}</p></noscript></section>`;

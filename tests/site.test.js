@@ -7,7 +7,7 @@ const {once}=require('node:events');
 const {renderPage,services,projects}=require('../site');
 
 test('all published routes, internal links, anchors and project images resolve in both languages',()=>{
-  const routes=['/','/our-work','/contact',...Object.keys(services).map(s=>'/'+s)];
+  const routes=['/','/our-work','/about','/contact',...Object.keys(services).map(s=>'/'+s)];
   for(const lang of ['en','es'])for(const route of routes){
     const html=renderPage(route,lang);assert.ok(html.includes(`<html lang="${lang}">`),route);
     assert.equal((html.match(/<h1>/g)||[]).length,1,route);
@@ -26,7 +26,7 @@ test('all published routes, internal links, anchors and project images resolve i
 });
 
 test('each page displays a project photograph only once, including full image and thumbnail variants',()=>{
-  const routes=['/','/our-work',...Object.keys(services).map(name=>'/'+name)];
+  const routes=['/','/our-work','/about',...Object.keys(services).map(name=>'/'+name)];
   for(const lang of ['en','es'])for(const route of routes){
     const html=renderPage(route,lang);
     const images=[...html.matchAll(/\bsrc="(\/assets\/projects\/[^"?]+)"/g)].map(match=>match[1].replace(/-thumb\.webp$/,'.webp'));
@@ -43,7 +43,7 @@ async function startServer(t,extra={}){
 }
 test('private staging protects pages and photos, rejects bad credentials and locks again after logout',async t=>{
   const base=await startServer(t,{PREVIEW_PASSWORD:'automated-test-only-password'});
-  for(const p of ['/','/maintenance','/contact','/our-work','/index.html']){
+  for(const p of ['/','/maintenance','/about','/contact','/our-work','/index.html']){
     const response=await fetch(base+p);const html=await response.text();assert.ok(html.includes('Private website preview'));assert.ok(!html.includes('Reliable Comfort.'));assert.match(response.headers.get('cache-control'),/no-store/);
   }
   assert.equal((await fetch(base+projects[0].src)).status,401);
@@ -73,6 +73,10 @@ test('preview login returns to a service deep link and rejects external redirect
   const page=await (await fetch(base+login.headers.get('location'),{headers:{cookie:login.headers.get('set-cookie').split(';')[0]}})).text();
   assert.match(page,/<h1>Mantenimiento preventivo<\/h1>/);
   assert.match(page,/service=maintenance&amp;property=commercial|service=maintenance&property=commercial/);
+  const aboutLogin=await fetch(base+'/preview-access',{method:'POST',body:new URLSearchParams({password,returnTo:'/about?lang=es'}),redirect:'manual'});
+  assert.equal(aboutLogin.headers.get('location'),'/about?lang=es');
+  const about=await (await fetch(base+'/about?lang=es',{headers:{cookie:aboutLogin.headers.get('set-cookie').split(';')[0]}})).text();
+  assert.match(about,/<h1>Conoce a Texcold<\/h1>/);
   for(const returnTo of ['https://example.com/','//example.com/','/\\example.com/','/unknown']){
     const response=await fetch(base+'/preview-access',{method:'POST',body:new URLSearchParams({password,returnTo}),redirect:'manual'});
     assert.equal(response.headers.get('location'),'/',returnTo);

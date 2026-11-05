@@ -55,3 +55,5 @@ The existing optional AI endpoint is isolated in `lib/assistant.js`; `/api/chat`
 Each service page now includes navigation within the page, tailored benefits and scope, residential/commercial contact options with the property preselected, a three-step explanation, relevant Texcold project photos and FAQs. Generator inquiries remain sales inquiries with an illustrative image. The private preview login preserves the requested service page and language; return destinations are restricted to this site.
 
 The equipment-and-materials photograph with the yellow truck has been removed from the active gallery and commercial page at the owner’s request. Its full image and thumbnail are no longer deployed.
+
+The bilingual About Us page (`/about`) presents the company history and quality commitments, with real Texcold project photographs and residential/commercial contact paths. The owner confirmed that Texcold began operations in 2022 and that his personal HVAC experience is eight years as of November 2026; these are presented separately.
