@@ -58,6 +58,9 @@ test('private staging protects pages and photos, rejects bad credentials and loc
   assert.equal((await fetch(base+'/.env',auth)).status,404);
   const tampered={headers:{cookie:cookie.split(';')[0]+'x'}};assert.ok((await (await fetch(base,tampered)).text()).includes('Private website preview'));
   const api=await fetch(base+'/api/chat',{...auth,method:'POST',headers:{...auth.headers,'content-type':'application/json'},body:JSON.stringify({message:'Maintenance'})});assert.equal(api.status,503);assert.equal((await api.json()).error,'AI_NOT_CONFIGURED');
+  const quote=await fetch(base+'/api/inquiries',{method:'POST',headers:{'content-type':'application/json'},body:'{}'});assert.equal(quote.status,401);
+  const crossSiteQuote=await fetch(base+'/api/inquiries',{...auth,method:'POST',headers:{...auth.headers,'content-type':'application/json',origin:'https://unrelated.example'},body:'{}'});assert.equal(crossSiteQuote.status,403);
+  const invalidQuote=await fetch(base+'/api/inquiries',{...auth,method:'POST',headers:{...auth.headers,'content-type':'application/json',origin:base},body:'{}'});assert.equal(invalidQuote.status,422);
   const logout=await fetch(base+'/logout',{method:'POST',...auth,redirect:'manual'});assert.match(logout.headers.get('set-cookie'),/Max-Age=0/);
 });
 test('deployment fails closed if a preview password was omitted',async t=>{

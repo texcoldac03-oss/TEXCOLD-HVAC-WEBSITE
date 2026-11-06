@@ -29,7 +29,21 @@ Set a strong `PREVIEW_PASSWORD` **only in the Railway staging service variables*
 
 ## Customer contact
 
-The service selector preserves the service and residential/commercial context when opening Contact. The quote request form requires a name, phone number, service street address, city, state, ZIP code and project details. Apartment or suite is optional. It validates customer details and prepares an **email draft**, with a copy option; the phone and full service address are included in the draft. It never claims that a request has been sent or that an appointment is confirmed. Delivery happens only when the visitor sends from their email application; no customer inquiry is stored by this app.
+The service selector preserves the service and residential/commercial context when opening Contact. The quote form requires a name, phone number, complete service address, project details and permission to contact the customer about that request. Apartment/suite and customer email are optional. Confirmed business hours appear alongside the contact details.
+
+`POST /api/inquiries` validates all fields again on the server. The recipient is fixed by `CONTACT_EMAIL`; client-supplied recipients, CC and email headers are ignored. The endpoint requires a private preview session, same-origin JSON, a valid request UUID and consent, and applies a honeypot, body limits and rate limits. Resend idempotency keys protect same-request retries, including ambiguous network failures. No inquiry body or API credential is written to application logs or disk.
+
+Direct sending becomes available **only when both `RESEND_API_KEY` and `CONTACT_FROM_EMAIL` are configured**. The server submits plain-text email to Resend and returns a reference only after provider acceptance. Provider acceptance does not establish final inbox delivery or book an appointment. Failed or uncertain sends retain the customer’s details and offer email/call alternatives. Missing configuration keeps the existing email-draft flow available and explicitly says direct sending is not available. Never set synthetic/test credentials on Railway.
+
+### Activate and verify delivery
+
+1. Configure a Resend account and sending API key. Put the key in the **TEXCOLD-HVAC-WEBSITE / staging / texcold-web** Railway variable `RESEND_API_KEY`, never source code or a chat message.
+2. Set `CONTACT_FROM_EMAIL` to the sender accepted by that account. For private testing, `Texcold Website <onboarding@resend.dev>` can send only to the email address associated with the Resend account; the account must therefore use `texcold@hotmail.com` for this destination. For launch, use a verified sender/domain configured by the domain administrator. This does not require replacing the website or creating a new business mailbox.
+3. Keep `CONTACT_EMAIL=texcold@hotmail.com` unless the owner provides a different recipient. Updating the recipient alone will not authorize an unverified sender.
+4. Submit one clearly labeled synthetic test on private staging. Check the provider’s accepted/delivered status **and actual receipt in the business inbox**. Confirm the phone and full address arrive, and reply-to uses the optional customer email.
+5. Test failure handling and retries; verify the same request is not emailed twice. Do not advertise a working automatic contact flow until this live acceptance and inbox check pass.
+
+Official reference: https://resend.com/docs/api-reference/emails/send-email and https://resend.com/docs/knowledge-base/403-error-resend-dev-domain.
 
 Default contact details were verified against Texcold's existing public website: `(281) 223-6761`, `texcold@hotmail.com`. The existing website was read only. Replace these centrally using Railway variables:
 
@@ -37,18 +51,20 @@ Default contact details were verified against Texcold's existing public website:
 | --- | --- |
 | `CONTACT_PHONE` | E.164 dial link |
 | `CONTACT_PHONE_DISPLAY` | Visible phone label |
-| `CONTACT_EMAIL` | Current or future business email and draft recipient |
+| `CONTACT_EMAIL` | Current/future quote recipient and email-draft destination |
+| `RESEND_API_KEY` | Server-only sending credential; required for direct submission |
+| `CONTACT_FROM_EMAIL` | Sender authorized by the email provider; required for direct submission |
 | `PREVIEW_PASSWORD` | Private staging access; required |
 
 ## Later integrations
 
-Business email does not block this version: change `CONTACT_EMAIL` when ready. A future server-side contact delivery adapter should validate requests and return an actual delivery result before the interface claims submission.
+Business email can be added later by updating `CONTACT_EMAIL` and the verified sender when ready. The delivery adapter is isolated in `lib/inquiries.js`; it has no dependency on the future AI assistant.
 
 The existing optional AI endpoint is isolated in `lib/assistant.js`; `/api/chat` returns `AI_NOT_CONFIGURED` while `OPENAI_API_KEY` is absent. No simulated AI assistant is shown. When ready, configure the API key server-side, review the assistant's instructions and add an explicit accessible chat interface. No API secret is shipped to the browser.
 
 ## Validation
 
-`npm test` checks every page in English and Spanish, internal links and anchors, all gallery assets, authenticated access, incorrect credentials, tampered cookies, protected image URLs, omitted password behavior and the unconfigured AI endpoint. Browser checks cover desktop navigation, a 390px mobile layout, menu behavior, selector recommendations, request preselection, draft generation/copying and gallery filtering/lightbox controls.
+`npm test` checks every page in English and Spanish, internal links and anchors, all gallery assets, authenticated access, incorrect credentials, tampered cookies, protected image URLs, omitted password behavior and the unconfigured AI endpoint. Browser checks cover desktop navigation, a 390px mobile layout, menu behavior, selector recommendations, request preselection, draft generation/copying and gallery filtering/lightbox controls. Inquiry tests additionally cover missing required data, recipient enforcement, consent, provider acceptance/failure/timeouts, idempotency, same-origin checks and unconfigured delivery. Live provider/inbox verification remains blocked until the owner connects sending credentials.
 
 ## Service page review — November 2026
 

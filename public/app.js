@@ -58,8 +58,8 @@
   dialog?.addEventListener('click',e=>{if(e.target===dialog){const box=dialog.getBoundingClientRect();if(e.clientX<box.left||e.clientX>box.right||e.clientY<box.top||e.clientY>box.bottom)dialog.close();}});
   dialog?.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();showPhoto(currentPhoto+1);}if(e.key==='ArrowLeft'){e.preventDefault();showPhoto(currentPhoto-1);}});
 
-  // Customer inquiries use a real contact path without a delivery backend.
-  // Opening the draft never claims to have sent or booked anything.
+  // Direct requests are sent only when server-side delivery is configured.
+  // Draft and failure paths never claim successful submission.
   const form=$('#request-form');
   if(form){
     const service=form.elements.service,propertyField=form.elements.property;
@@ -71,16 +71,38 @@
     const phoneField=form.elements.phone;
     function validatePhone(){const value=phoneField.value.trim(),digits=value.replace(/\D/g,'');phoneField.setCustomValidity(value&&(digits.length<10||digits.length>15||!/^[+\d\s().-]+$/.test(value))?t('Enter a phone number with 10 to 15 digits.','Escribe un teléfono de 10 a 15 dígitos.'):'');}
     phoneField.addEventListener('input',validatePhone);
-    form.addEventListener('input',()=>$('#request-result').hidden=true);
-    form.addEventListener('change',()=>$('#request-result').hidden=true);
-    form.addEventListener('submit',e=>{
-      e.preventDefault();validatePhone();if(!form.reportValidity())return;
-      const data=Object.fromEntries(new FormData(form));const clean=s=>String(s).trim();
-      const summary=[t('Texcold quote request','Solicitud de cotización Texcold'),'',t('Name: ','Nombre: ')+clean(data.name),t('Phone: ','Teléfono: ')+clean(data.phone),t('Service address: ','Dirección del servicio: ')+[clean(data.address),clean(data.unit),clean(data.city),clean(data.state)+' '+clean(data.zip)].filter(Boolean).join(', '),t('Property: ','Propiedad: ')+(data.property==='commercial'?t('Commercial / business','Comercial / negocio'):t('Residential / home','Residencial / hogar')),t('Service: ','Servicio: ')+serviceNames[data.service],'',clean(data.details)].join('\n');
+    const direct=form.dataset.delivery==='direct',submit=$('#request-submit');
+    let busy=false,requestId='',lastPayload='';
+    function hideResult(){if(!busy)$('#request-result').hidden=true;}
+    form.addEventListener('input',hideResult);form.addEventListener('change',hideResult);
+    const showResult=(status,title,message,fallback=true)=>{const panel=$('#request-result');panel.dataset.status=status;$('#request-result-title').textContent=title;$('#request-result-message').textContent=message;$('#request-fallback').hidden=!fallback;panel.hidden=false;panel.focus({preventScroll:true});panel.scrollIntoView({block:'nearest',behavior:'smooth'});};
+    form.addEventListener('submit',async e=>{
+      e.preventDefault();if(busy)return;
+      for(const field of ['name','address','city','details']){const input=form.elements[field];input.setCustomValidity(input.value.trim()?'':t('Please complete this field.','Completa este campo.'));input.addEventListener('input',()=>input.setCustomValidity(''),{once:true});}
+      validatePhone();if(!form.reportValidity())return;
+      const data=Object.fromEntries(new FormData(form));const clean=s=>String(s||'').trim();
+      for(const key of Object.keys(data))data[key]=clean(data[key]);
+      data.consent=form.elements.consent.checked;
+      const summary=[t('Texcold quote request','Solicitud de cotización Texcold'),'',t('Name: ','Nombre: ')+data.name,t('Phone: ','Teléfono: ')+data.phone,t('Email: ','Correo: ')+(data.email||t('Not provided','No indicado')),t('Service address: ','Dirección del servicio: ')+[data.address,data.unit,data.city,data.state+' '+data.zip].filter(Boolean).join(', '),t('Property: ','Propiedad: ')+(data.property==='commercial'?t('Commercial / business','Comercial / negocio'):t('Residential / home','Residencial / hogar')),t('Service: ','Servicio: ')+serviceNames[data.service],'',data.details].join('\n');
       $('#request-summary').value=summary;
       const subject=t('Quote request — ','Solicitud de cotización — ')+serviceNames[data.service];
       $('#email-request').href='mailto:'+document.body.dataset.email+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(summary);
-      $('#copy-status').textContent='';$('#request-result').hidden=false;$('#request-result').focus({preventScroll:true});$('#request-result').scrollIntoView({block:'nearest',behavior:'smooth'});
+      $('#copy-status').textContent='';
+      if(!direct){showResult('draft',t('Your quote request is ready','Tu solicitud de cotización está lista'),t('Nothing has been sent yet. Open your email app to review and send it, or copy the details and call Texcold.','Todavía no se ha enviado nada. Abre tu aplicación de correo para revisar y enviar, o copia los detalles y llama a Texcold.'));return;}
+      const serialized=JSON.stringify(data);if(serialized!==lastPayload){requestId=crypto.randomUUID();lastPayload=serialized;}
+      busy=true;form.setAttribute('aria-busy','true');$('#request-result').hidden=true;
+      const controls=[...form.elements],originalLabel=submit.textContent;
+      controls.forEach(control=>control.disabled=true);submit.textContent=t('Sending…','Enviando…');
+      try{
+        const response=await fetch('/api/inquiries',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...data,requestId}),signal:AbortSignal.timeout(20000)});
+        const result=await response.json();
+        if(!response.ok||result.ok!==true||!result.reference){
+          const message=result.error==='RATE_LIMITED'?t('Please wait a few minutes before trying again, or call Texcold directly.','Espera unos minutos antes de volver a intentar o llama directamente a Texcold.'):result.error==='INVALID_FIELDS'?t('Please check the required information, then try again.','Revisa la información obligatoria y vuelve a intentar.'):result.error==='DELIVERY_NOT_CONFIGURED'?t('Online sending is unavailable. Open the email draft below or call Texcold. Nothing was sent by this form.','El envío en línea no está disponible. Abre el borrador de correo o llama a Texcold. Este formulario no envió la solicitud.'):t('We could not confirm sending. Try again with the same details, or use the email draft or phone below.','No pudimos confirmar el envío. Vuelve a intentar con los mismos datos o utiliza el correo o teléfono de abajo.');
+          showResult('error',t('Please contact Texcold','Contacta a Texcold'),message);return;
+        }
+        showResult('success',t('Quote request sent','Solicitud de cotización enviada'),t('Reference: ','Referencia: ')+result.reference+'. '+t('Your request was accepted for email delivery to Texcold. We will confirm availability and the next step directly. This is not a confirmed appointment.','Tu solicitud fue aceptada para envío al correo de Texcold. Confirmaremos directamente la disponibilidad y el siguiente paso. Esto no confirma una cita.'),false);
+      }catch{showResult('error',t('Sending could not be confirmed','No se pudo confirmar el envío'),t('Your details are still here. Try again with the same details, or open the email draft below.','Tus datos siguen aquí. Vuelve a intentar con los mismos datos o abre el borrador de correo de abajo.'));}
+      finally{busy=false;form.removeAttribute('aria-busy');controls.forEach(control=>control.disabled=false);submit.textContent=originalLabel;}
     });
     $('#copy-request').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('#request-summary').value);$('#copy-status').textContent=t('Copied. You can paste your quote request into an email or message.','Copiado. Puedes pegar tu solicitud de cotización en un correo o mensaje.');}catch{$('#request-summary').focus();$('#request-summary').select();$('#copy-status').textContent=t('Select and copy the details above.','Selecciona y copia los detalles de arriba.');}});
   }

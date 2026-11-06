@@ -4,6 +4,7 @@ const path=require('node:path');
 const crypto=require('node:crypto');
 const {renderPage,services}=require('./site');
 const {chat}=require('./lib/assistant');
+const {createInquiryHandler,deliveryConfigured}=require('./lib/inquiries');
 const port=Number(process.env.PORT)||Number(process.argv[process.argv.indexOf('--port')+1])||3000;
 const publicDir=path.join(__dirname,'public');
 const password=process.env.PREVIEW_PASSWORD||'';
@@ -34,6 +35,7 @@ const htmlAttribute=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<'
 const loginPage=(error,returnTo='/')=>`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Texcold — Private Preview</title><link rel="stylesheet" href="/styles.css?v=${require('./package.json').version}"><link rel="icon" href="/favicon.svg"></head><body class="auth-body"><main class="auth-card"><img class="auth-logo" src="/assets/texcold-logo.webp" alt="Texcold Heating and A/C Services" width="1774" height="887"><p class="eyebrow">TEXCOLD · STAGING</p><h1>Private website preview</h1><p class="muted">Enter your preview key to see the updated website.<br>Ingresa tu clave para ver la página actualizada.</p>${error?'<p class="auth-error" role="alert">'+error+'</p>':''}<form method="post" action="/preview-access"><input type="hidden" name="returnTo" value="${htmlAttribute(previewReturnPath(returnTo))}"><label for="preview-key">Preview key / Clave de acceso<input id="preview-key" name="password" type="password" autocomplete="current-password" required autofocus maxlength="200"></label><button class="btn" type="submit">Open preview / Abrir página →</button></form></main></body></html>`;
 const sendHtml=(req,res,status,html)=>{res.writeHead(status,{...headers,'content-type':'text/html; charset=utf-8','cache-control':'no-store'});if(req.method==='HEAD')return res.end();res.end(html);};
 async function readBody(req){let body='';for await(const chunk of req){body+=chunk;if(body.length>maxBody)throw new Error('BODY_TOO_LARGE');}return body;}
+const submitInquiry=createInquiryHandler({contact,json,allowed,readBody});
 const server=http.createServer(async(req,res)=>{
   try{
     const url=new URL(req.url,'http://localhost');
@@ -57,9 +59,10 @@ const server=http.createServer(async(req,res)=>{
       return sendHtml(req,res,200,loginPage(undefined,url.pathname+url.search));
     }
     if(req.method==='POST'&&url.pathname==='/api/chat')return chat(req,res,{json,allowed,maxBody});
+    if(req.method==='POST'&&url.pathname==='/api/inquiries')return submitInquiry(req,res);
     if(req.method!=='GET'&&req.method!=='HEAD'){res.writeHead(405,{...headers,'allow':'GET, HEAD'});return res.end('Method not allowed');}
     const pathname=url.pathname==='/index.html'?'/':url.pathname.replace(/\/$/,'')||'/';
-    const html=renderPage(pathname,url.searchParams.get('lang')==='es'?'es':'en',contact);
+    const html=renderPage(pathname,url.searchParams.get('lang')==='es'?'es':'en',{...contact,deliveryReady:deliveryConfigured(process.env,contact.email)});
     if(html!==null)return sendHtml(req,res,200,html);
     if(!/^\/(?:styles\.css|app\.js|favicon\.svg|assets\/[a-z0-9_./-]+)$/.test(url.pathname)||url.pathname.includes('..')){
       res.writeHead(404,{...headers,'content-type':'text/plain; charset=utf-8'});return res.end('Page not found.');
