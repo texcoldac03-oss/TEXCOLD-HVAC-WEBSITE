@@ -13,7 +13,7 @@ test('all published routes, internal links, anchors and project images resolve i
     assert.equal((html.match(/<h1>/g)||[]).length,1,route);
     const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(ids.length,new Set(ids).size,`duplicate id in ${route}`);
     for(const [,href] of html.matchAll(/href="([^"?]+)(?:\?[^"#]*)?(?:#[^"]*)?"/g)){
-      if(href==='https://maps.app.goo.gl/ERhRFbynu8uMsAgRA')continue;
+      if(href==='https://maps.app.goo.gl/ERhRFbynu8uMsAgRA'||href==='https://search.google.com/local/writereview')continue;
       if(href.startsWith('mailto:')||href.startsWith('tel:')||href.startsWith('?'))continue;
       if(href.startsWith('#')){assert.ok(ids.includes(href.slice(1)),`missing anchor ${href} on ${route}`);continue;}
       const pathname=href.split('#')[0];assert.ok(routes.includes(pathname)||fs.existsSync(path.join(__dirname,'../public',pathname)),`broken link ${href} on ${route}`);

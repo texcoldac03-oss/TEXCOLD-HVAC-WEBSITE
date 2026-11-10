@@ -14,6 +14,24 @@
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav?.classList.contains('open')){closeMenu();menu.focus();}});
   document.addEventListener('click',e=>{if(nav?.classList.contains('open')&&!e.target.closest('header'))closeMenu();});
 
+  const reviewTrack = $('#reviews-track');
+  if (reviewTrack) {
+    const controls = $('.reviews-controls');
+    const [previous, next] = [...controls.querySelectorAll('button')];
+    const [firstCard, secondCard] = reviewTrack.children;
+    const updateControls = () => {
+      previous.disabled = reviewTrack.scrollLeft < 1;
+      next.disabled = reviewTrack.scrollWidth - reviewTrack.clientWidth - reviewTrack.scrollLeft < 1;
+    };
+    controls.addEventListener('click', event => {
+      const direction = Number(event.target.dataset.reviewDirection);
+      if (direction) reviewTrack.scrollBy({left: direction * (secondCard.offsetLeft - firstCard.offsetLeft)});
+    });
+    reviewTrack.addEventListener('scroll', updateControls, {passive: true});
+    new ResizeObserver(updateControls).observe(reviewTrack);
+    controls.hidden = false;
+  }
+
   // A deterministic service guide. It does not require an AI account or API.
   const propertyStep=$('#property-step'), needStep=$('#need-step'), result=$('#selector-result');
   let property='residential';

@@ -1,46 +1,53 @@
 const mapsUrl = 'https://maps.app.goo.gl/ERhRFbynu8uMsAgRA';
+const writeReviewUrl = 'https://search.google.com/local/writereview?placeid=ChIJuSFCFvFXR4YR-JAN-QCi11g';
 
 const reviews = [
-  {
-    name: 'A.B Castaneda',
-    lang: 'en',
-    quote: 'The installation was professional, efficient, and everything was completed very well.'
-  },
-  {
-    name: 'Sergio Triana',
-    lang: 'en',
-    quote: 'my a/c is working like new'
-  },
-  {
-    name: 'Angela Bozo',
-    lang: 'es',
-    quote: 'Excelente y responsable atención… 100% recomendado'
-  }
+  {name: 'Maria Anguiano', lang: 'es', quote: 'Muy buen travajo garantisado'},
+  {name: 'Sergio Triana', lang: 'en', quote: 'my a/c is working like new'},
+  {name: 'A.B Castaneda', lang: 'en', quote: 'The installation was professional, efficient'},
+  {name: 'Angela Bozo', lang: 'es', quote: 'Excelente y responsable atención'},
+  {name: 'Nick Wingfield', lang: 'en', quote: 'do a great job'}
 ];
 
 function renderReviews({t, esc}) {
+  const title = t('Testimonials', 'Testimonios');
   return `<section id="reviews" class="reviews-section" aria-labelledby="reviews-title">
     <div class="section">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">${t('GOOGLE REVIEWS','RESEÑAS DE GOOGLE')}</p>
-          <h2 id="reviews-title">${t('What our customers say','Lo que dicen nuestros clientes')}</h2>
-          <p class="lead">${t('Selected excerpts from customer reviews on Google.','Extractos de reseñas de nuestros clientes en Google.')}</p>
-        </div>
-        <a class="btn btn-navy reviews-maps" href="${mapsUrl}">${t('See all reviews on Google Maps','Ver todas las reseñas en Google Maps')}</a>
+      <div class="reviews-heading">
+        <h2 id="reviews-title">${title}</h2>
+        <div class="reviews-divider" aria-hidden="true">”</div>
       </div>
-      <p class="reviews-summary">
-        <span class="review-stars" aria-hidden="true">★★★★★</span>
-        <strong>${t('5.0 out of 5','5.0 de 5')}</strong>
-        <span>${t('30 Google reviews as of Nov 6, 2026','30 reseñas de Google al 6 nov 2026')}</span>
-      </p>
-      <div class="reviews-grid">
-        ${reviews.map(review => `
-          <figure class="review-card">
-            <span class="review-stars" role="img" aria-label="${t('5 out of 5 stars','5 de 5 estrellas')}">★★★★★</span>
-            <blockquote lang="${review.lang}"><p>“${esc(review.quote)}”</p></blockquote>
-            <figcaption>${esc(review.name)} <span>· Google</span></figcaption>
-          </figure>`).join('')}
+      <div class="reviews-panel">
+        <div class="reviews-summary">
+          <strong>Texcold A/C Services LLC</strong>
+          <div class="reviews-rating"><span class="review-stars" aria-hidden="true">★★★★★</span> <strong>${t('5.0 out of 5','5.0 de 5')}</strong></div>
+          <span>${t('30 Google reviews','30 reseñas en Google')}</span>
+          <small>${t('As of Nov 6, 2026','Al 6 nov 2026')}</small>
+          <div class="reviews-actions">
+            <a class="btn btn-outline" href="${writeReviewUrl}">${t('Write a review','Escribir una reseña')}</a>
+            <a class="text-link" href="${mapsUrl}">${t('See all on Google Maps','Ver todas en Google Maps')}</a>
+          </div>
+        </div>
+        <div class="reviews-carousel">
+          <div class="reviews-track" id="reviews-track" role="region" aria-label="${t('Selected reviews','Reseñas seleccionadas')}" tabindex="0">
+            ${reviews.map(review => `
+              <figure class="review-card">
+                <figcaption>
+                  <span class="review-avatar" aria-hidden="true">${esc(review.name[0])}</span>
+                  <span><strong>${esc(review.name)}</strong><small>${t('Posted on Google','Publicado en Google')}</small></span>
+                </figcaption>
+                <span class="review-stars" role="img" aria-label="${t('5 out of 5 stars','5 de 5 estrellas')}">★★★★★</span>
+                <blockquote lang="${review.lang}"><p>“${esc(review.quote)}”</p></blockquote>
+              </figure>`).join('')}
+          </div>
+          <div class="reviews-carousel-footer">
+            <small>${t('Excerpts from Google reviews','Extractos de reseñas de Google')}</small>
+            <div class="reviews-controls" hidden>
+              <button type="button" data-review-direction="-1" aria-controls="reviews-track" aria-label="${t('Previous review','Reseña anterior')}" disabled>‹</button>
+              <button type="button" data-review-direction="1" aria-controls="reviews-track" aria-label="${t('Next review','Siguiente reseña')}">›</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>`;
